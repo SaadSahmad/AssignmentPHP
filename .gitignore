@@ -3,3 +3,9 @@
 
 # IDEA 
 .idea/*
+
+# Sensetive info
+/.env
+
+#Vendor
+vendor/*

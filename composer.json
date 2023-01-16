@@ -1,0 +1,21 @@
+{
+  "name": "youweagency/bootcamp-php",
+  "description": "A collection of PHP exercises",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Martijn Swinkels",
+      "email": "m.swinkels@youweagency.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Bootcamp\\": ""
+    }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.5",
+    "guzzlehttp/guzzle": "^7.5"
+  }
+}

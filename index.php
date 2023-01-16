@@ -1,6 +1,12 @@
+<?php
+require_once 'vendor/autoload.php';
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+$getExercises = new \Bootcamp\Model\GetExercises();
+$exercises = $getExercises->execute();
+?>
 <!doctype html>
-
-<html lang="en" class="mdc-typography">
+<html lang="en" class="scroll-smooth">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +17,6 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-        <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
         <style>
             .gradient {
                 background: #E40046;
@@ -52,8 +57,8 @@
                 <p class="leading-normal text-2xl mb-8">
                     A collection of exercises to help get you up to speed and start developing awesome things using PHP!
                 </p>
-                <a href="https://source.youwe.nl/projects/BCMP/repos/basic-php/browse" target="_blank" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                    Check the repo
+                <a href="#available-exercises" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                    Check available exercises
                 </a>
             </div>
             <!--Right Col-->
@@ -129,5 +134,82 @@
             </div>
         </div>
     </section>
+
+    <section class="bg-white border-b py-8">
+        <div class="container max-w-5xl mx-auto m-8">
+            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800" id="available-exercises">
+                Available exercises
+            </h2>
+            <div class="w-full mb-4">
+                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+            </div>
+            <?php if ($exercises): ?>
+            <div class="flex flex-wrap flex-col-reverse sm:flex-row">
+                <?php foreach($exercises as $level => $exerciseNames): ?>
+                <div class="w-full sm:w-1/2 p-12 mt-12">
+                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                        <?= str_replace('-' , ' ', ucfirst($level)) ?>
+                    </h3>
+
+                    <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+                        <?php foreach($exerciseNames as $exerciseName => $exerciseUrl): ?>
+                            <li class="pt-3 pb-3 sm:pb-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            <?= str_replace('-' , ' ', ucfirst($exerciseName)) ?>
+                                        </p>
+                                    </div>
+                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                        <a href="<?= $exerciseUrl ?>" target="_blank" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            View Source
+                                            <svg aria-hidden="true" class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php else: ?>
+                <div class="flex flex-wrap">
+                    <div class="w-5/6 sm:w-1/2 p-6">
+                        <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                            Check back soon!
+                        </h3>
+                        <p class="text-gray-600 mb-8">
+                            It looks like there are currently no exercises found. This could be because we were unable to load them, or becuase there really are no exercises.
+                            Check back soon!
+                            <br />
+                            <br />
+                            Images from:
+
+                            <a class="text-pink-500 underline" href="https://undraw.co/">undraw.co</a>
+                        </p>
+                    </div>
+                    <div class="w-full sm:w-1/2 p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" class="w-5/6 sm:h-64 mx-auto" viewBox="0 0 647.63626 632.17383" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M687.3279,276.08691H512.81813a15.01828,15.01828,0,0,0-15,15v387.85l-2,.61005-42.81006,13.11a8.00676,8.00676,0,0,1-9.98974-5.31L315.678,271.39691a8.00313,8.00313,0,0,1,5.31006-9.99l65.97022-20.2,191.25-58.54,65.96972-20.2a7.98927,7.98927,0,0,1,9.99024,5.3l32.5498,106.32Z" transform="translate(-276.18187 -133.91309)" fill="#f2f2f2"/><path d="M725.408,274.08691l-39.23-128.14a16.99368,16.99368,0,0,0-21.23-11.28l-92.75,28.39L380.95827,221.60693l-92.75,28.4a17.0152,17.0152,0,0,0-11.28028,21.23l134.08008,437.93a17.02661,17.02661,0,0,0,16.26026,12.03,16.78926,16.78926,0,0,0,4.96972-.75l63.58008-19.46,2-.62v-2.09l-2,.61-64.16992,19.65a15.01489,15.01489,0,0,1-18.73-9.95l-134.06983-437.94a14.97935,14.97935,0,0,1,9.94971-18.73l92.75-28.4,191.24024-58.54,92.75-28.4a15.15551,15.15551,0,0,1,4.40966-.66,15.01461,15.01461,0,0,1,14.32032,10.61l39.0498,127.56.62012,2h2.08008Z" transform="translate(-276.18187 -133.91309)" fill="#3f3d56"/><path d="M398.86279,261.73389a9.0157,9.0157,0,0,1-8.61133-6.3667l-12.88037-42.07178a8.99884,8.99884,0,0,1,5.9712-11.24023l175.939-53.86377a9.00867,9.00867,0,0,1,11.24072,5.9707l12.88037,42.07227a9.01029,9.01029,0,0,1-5.9707,11.24072L401.49219,261.33887A8.976,8.976,0,0,1,398.86279,261.73389Z" transform="translate(-276.18187 -133.91309)" fill="#e40046"/><circle cx="190.15351" cy="24.95465" r="20" fill="#e40046"/><circle cx="190.15351" cy="24.95465" r="12.66462" fill="#fff"/><path d="M878.81836,716.08691h-338a8.50981,8.50981,0,0,1-8.5-8.5v-405a8.50951,8.50951,0,0,1,8.5-8.5h338a8.50982,8.50982,0,0,1,8.5,8.5v405A8.51013,8.51013,0,0,1,878.81836,716.08691Z" transform="translate(-276.18187 -133.91309)" fill="#e6e6e6"/><path d="M723.31813,274.08691h-210.5a17.02411,17.02411,0,0,0-17,17v407.8l2-.61v-407.19a15.01828,15.01828,0,0,1,15-15H723.93825Zm183.5,0h-394a17.02411,17.02411,0,0,0-17,17v458a17.0241,17.0241,0,0,0,17,17h394a17.0241,17.0241,0,0,0,17-17v-458A17.02411,17.02411,0,0,0,906.81813,274.08691Zm15,475a15.01828,15.01828,0,0,1-15,15h-394a15.01828,15.01828,0,0,1-15-15v-458a15.01828,15.01828,0,0,1,15-15h394a15.01828,15.01828,0,0,1,15,15Z" transform="translate(-276.18187 -133.91309)" fill="#3f3d56"/><path d="M801.81836,318.08691h-184a9.01015,9.01015,0,0,1-9-9v-44a9.01016,9.01016,0,0,1,9-9h184a9.01016,9.01016,0,0,1,9,9v44A9.01015,9.01015,0,0,1,801.81836,318.08691Z" transform="translate(-276.18187 -133.91309)" fill="#e40046"/><circle cx="433.63626" cy="105.17383" r="20" fill="#e40046"/><circle cx="433.63626" cy="105.17383" r="12.18187" fill="#fff"/></svg>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <footer class="p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            © <?= date('Y') ?> <a href="https://www.youweagency.nl/" class="hover:underline">Youwe Agency B.V.</a>. All Rights Reserved.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+            <li>
+                <a href="https://www.youweagency.nl/" class="mr-4 hover:underline md:mr-6 ">Youwe Agency B.V.</a>
+            </li>
+            <li>
+                <a href="https://source.youwe.nl/projects/BCMP/repos/basic-php/browse" class="mr-4 hover:underline md:mr-6">Source</a>
+            </li>
+        </ul>
+    </footer>
+
     </body>
 </html>
