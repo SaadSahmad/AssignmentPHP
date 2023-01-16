@@ -19,7 +19,7 @@ ddev start
 ```
 
 ### 2. Visit the website
-You should now be able to access your demo store on https://bootcamp-php.ddev.site/
+You should now be able to access your demo project on https://bootcamp-php.ddev.site/
 
 ## The problem
 Describe which problem the developer is solving.
