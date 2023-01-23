@@ -9,6 +9,7 @@
 if (!filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL)) {
     echo("PLease provide a valid email");
 } else {
-    echo("Thank you");}
+    echo("Thank you");
+}
 
 
