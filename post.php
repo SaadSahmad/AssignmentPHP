@@ -7,9 +7,9 @@
  * @todo 3. Redirect to index and process the results*/
 
 if (!filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL)) {
-    echo("PLease provide a valid email");
+    echo"PLease provide a valid email";
 } else {
-    echo("Thank you");
+    echo"Thank you";
 }
 
 
