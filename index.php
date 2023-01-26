@@ -76,7 +76,7 @@
                         echo '<span style="font-weight: bold; color: red;">Error</span>';
                     }
                     setcookie('Valid', '', time() - 3600);
-
+                    setcookie('NotValid', '', time() - 3600);
                     ?>
                     <div class="flex items-center justify-between pt-4">
                         <button class="bg-gray-700 hover:bg-purple-400 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
