@@ -50,14 +50,10 @@
 
                 <form class="bg-gray-900 opacity-75 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4" method="post" action="post.php">
                     <div class="mb-4">
-                        <?php
-                        /**
-                         * @todo 1. Only show the signup if the use didn't sign up already
-                         * @todo 2. If the user did signup, show a thank you message instead
-                         */
-                        ?>
+
                         <label class="block text-blue-300 py-2 font-bold mb-2" for="email">
                             We'll handle the posting of this form.
+
                         </label>
                         <input class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transition transition duration-300 ease-in-out"
                                name="email"
@@ -66,7 +62,22 @@
                                placeholder="you@somewhere.com"
                         />
                     </div>
+                    <?php
+                    /**
+                     * @todo 1. Only show the signup if the use didn't sign up already
+                     * @todo 2. If the user did signup, show a thank you message instead
+                     */
+                    if(isset($_COOKIE["Valid"])) {
+                        echo '<span style="color:#b3ffaa;text-align:center;"> Thank you';
 
+                    }
+
+                    elseif (isset($_COOKIE["NotValid"])){
+                        echo '<span style="font-weight: bold; color: red;">Error</span>';
+                    }
+                    setcookie('Valid', '', time() - 3600);
+
+                    ?>
                     <div class="flex items-center justify-between pt-4">
                         <button class="bg-gray-700 hover:bg-purple-400 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                                 type="submit">
